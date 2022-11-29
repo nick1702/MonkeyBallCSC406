@@ -15,8 +15,8 @@
 #include "glPlatform.h"
 #include "ApplConstants.h"
 //
-using namespace shapes2d;
 
+using namespace shapes2d;
 using namespace std;
 
 //    Prototypes for my local functions.
@@ -25,9 +25,6 @@ void setMaterial(GLfloat ambRed, GLfloat ambGreen, GLfloat ambBlue, GLfloat difR
                  GLfloat difGreen, GLfloat difBlue, GLfloat specRed, GLfloat specGreen,
                  GLfloat specBlue, GLfloat shine);
 void drawReferenceFrame(void);
-void drawOrbit(void);
-void cameraToWorld(void);
-void setupCamera(void);
 void myDisplay(void);
 void myResize(int w, int h);
 void myMouse(int b, int s, int x, int y);
@@ -36,17 +33,12 @@ void myTimeOut(int dt);
 void myInit(void);
 
 //  Current dimensions of the window
-int gWindowWidth = 900,
+int gWindowWidth = 1200,
     gWindowHeight = 900;
     
 
 
-//WORLD DATA
-const float World2D::X_MIN = -10, World2D::X_MAX = +10;
-const float World2D::Y_MIN = -10, World2D::Y_MAX = +10;
 
-const float World2D::WORLD_WIDTH = World2D::X_MAX - World2D::X_MIN;
-const float World2D::WORLD_HEIGHT = World2D::Y_MAX - World2D::Y_MIN;
 
 
 //    This is the function that does the actual scene drawing
@@ -146,14 +138,48 @@ void myTimeOut(int dt)
     glutTimerFunc(20, myTimeOut, 0);
 }
 
+//     Allows to define the reflectance properties of the current object's material
+void setMaterial(GLfloat ambRed, GLfloat ambGreen, GLfloat ambBlue, GLfloat difRed,
+    GLfloat difGreen, GLfloat difBlue, GLfloat specRed, GLfloat specGreen,
+    GLfloat specBlue, GLfloat shine)
+{
+    GLfloat ambient[4] = {ambRed, ambGreen, ambBlue, 1.f};
+    GLfloat diffuse[4] = {difRed, difGreen, difBlue, 1.f};
+    GLfloat specular[4] = {specRed, specGreen, specBlue, 1.f};
+    GLfloat emission[4] = {0.f, 0.f, 0.f, 1.f};
+    glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+    glMaterialfv(GL_FRONT, GL_EMISSION, emission);
+    glMaterialf(GL_FRONT, GL_SHININESS, shine * 128.f);
+}
+
+void drawReferenceFrame(void)
+{
+    glBegin(GL_LINES);
+        //    Z --> red.
+        glColor3f(1., 0., 0.);
+        setMaterial(1.0, 0., 0., 0., 0., 0., 0., 0., 0., 0.);
+        glVertex3f(0., 0., -0.1);
+        glVertex3f(0., 0., 0.5);
+        //    X --> Blue
+        setMaterial(0., 1.0, 0., 0., 0., 0., 0., 0., 0., 0.);
+        glVertex3f(-0.1, 0., 0.);
+        glVertex3f(0.5, 0., 0.);
+        //    Y --> green
+        setMaterial(0., 0., 1.0, 0., 0., 0., 0., 0., 0., 0.);
+        glVertex3f(0., -0.1, 0.);
+        glVertex3f(0., 0.5, 0.);
+    glEnd();
+}
+
 
 void myInit(void)
 {
-    
     glutSetKeyRepeat(GLUT_KEY_REPEAT_ON);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(World2D::X_MIN, World2D::X_MAX, World2D::Y_MIN, World2D::Y_MAX);
+    gluPerspective(40.f, 4.f/3.f, 0.5f, 100.f);
     myDisplay();
 }
 
