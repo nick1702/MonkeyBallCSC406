@@ -23,6 +23,7 @@
 #if (defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || (defined( __MWERKS__) && __INTEL__))
     //  Visual
     #if defined(_MSC_VER)
+        #include <Windows.h>
         #include <GL\gl.h>
         #include <GL\glut.h>
     //  gcc-based compiler
