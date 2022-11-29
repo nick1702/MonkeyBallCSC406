@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EE9DE5322936C4610077C090 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE9DE5312936C4610077C090 /* main.cpp */; };
+		EE9DE53A2936C4890077C090 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9DE5392936C4880077C090 /* GLUT.framework */; };
+		EE9DE53C2936C48D0077C090 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9DE53B2936C48D0077C090 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		EE9DE52E2936C4610077C090 /* MonkeyBall */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MonkeyBall; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE9DE5312936C4610077C090 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		EE9DE5392936C4880077C090 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		EE9DE53B2936C48D0077C090 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		EE9DE53D2936C4BC0077C090 /* ApplConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplConstants.h; sourceTree = "<group>"; };
+		EE9DE53E2936C4D60077C090 /* glPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glPlatform.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +38,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE9DE53A2936C4890077C090 /* GLUT.framework in Frameworks */,
+				EE9DE53C2936C48D0077C090 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +51,7 @@
 			children = (
 				EE9DE5302936C4610077C090 /* MonkeyBall */,
 				EE9DE52F2936C4610077C090 /* Products */,
+				EE9DE5382936C4880077C090 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +67,19 @@
 			isa = PBXGroup;
 			children = (
 				EE9DE5312936C4610077C090 /* main.cpp */,
+				EE9DE53D2936C4BC0077C090 /* ApplConstants.h */,
+				EE9DE53E2936C4D60077C090 /* glPlatform.h */,
 			);
 			path = MonkeyBall;
+			sourceTree = "<group>";
+		};
+		EE9DE5382936C4880077C090 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE9DE53B2936C48D0077C090 /* OpenGL.framework */,
+				EE9DE5392936C4880077C090 /* GLUT.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
