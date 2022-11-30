@@ -10,6 +10,13 @@
 		EE9DE5322936C4610077C090 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE9DE5312936C4610077C090 /* main.cpp */; };
 		EE9DE53A2936C4890077C090 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9DE5392936C4880077C090 /* GLUT.framework */; };
 		EE9DE53C2936C48D0077C090 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9DE53B2936C48D0077C090 /* OpenGL.framework */; };
+		EE9DE5C62936D6B30077C090 /* glUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE9DE5A52936D65F0077C090 /* glUtils.cpp */; };
+		EE9DE5C72936D6B30077C090 /* Cylinder_GL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE9DE5A62936D65F0077C090 /* Cylinder_GL.cpp */; };
+		EE9DE5CB2936D6B30077C090 /* GraphicObject_GL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE9DE5AA2936D65F0077C090 /* GraphicObject_GL.cpp */; };
+		EE9DE5D22936D6B30077C090 /* errorHandling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE9DE5A32936D65F0077C090 /* errorHandling.cpp */; };
+		EE9DE5D52936D7FF0077C090 /* Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE9DE5D32936D7FF0077C090 /* Body.cpp */; };
+		EE9DE5D82936DE0B0077C090 /* Limb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE9DE5D62936DE0B0077C090 /* Limb.cpp */; };
+		EE9DE5DA2936E0C30077C090 /* Sphere_GL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE9DE5D92936E0C30077C090 /* Sphere_GL.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +38,33 @@
 		EE9DE53B2936C48D0077C090 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EE9DE53D2936C4BC0077C090 /* ApplConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplConstants.h; sourceTree = "<group>"; };
 		EE9DE53E2936C4D60077C090 /* glPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glPlatform.h; sourceTree = "<group>"; };
+		EE9DE5A32936D65F0077C090 /* errorHandling.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = errorHandling.cpp; sourceTree = "<group>"; };
+		EE9DE5A52936D65F0077C090 /* glUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = glUtils.cpp; sourceTree = "<group>"; };
+		EE9DE5A62936D65F0077C090 /* Cylinder_GL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cylinder_GL.cpp; sourceTree = "<group>"; };
+		EE9DE5AA2936D65F0077C090 /* GraphicObject_GL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicObject_GL.cpp; sourceTree = "<group>"; };
+		EE9DE5B22936D67D0077C090 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		EE9DE5B42936D67D0077C090 /* readSpecFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = readSpecFile.h; sourceTree = "<group>"; };
+		EE9DE5B52936D67D0077C090 /* errorHandling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = errorHandling.h; sourceTree = "<group>"; };
+		EE9DE5B82936D67E0077C090 /* Cylinder_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cylinder_GL.h; sourceTree = "<group>"; };
+		EE9DE5B92936D67E0077C090 /* GraphicObject_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphicObject_GL.h; sourceTree = "<group>"; };
+		EE9DE5BA2936D67E0077C090 /* glUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glUtils.h; sourceTree = "<group>"; };
+		EE9DE5BB2936D67E0077C090 /* ObjectParser_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectParser_GL.h; sourceTree = "<group>"; };
+		EE9DE5BC2936D67E0077C090 /* graphicsDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = graphicsDef.h; sourceTree = "<group>"; };
+		EE9DE5BD2936D67E0077C090 /* TubularSection_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TubularSection_GL.h; sourceTree = "<group>"; };
+		EE9DE5BE2936D67E0077C090 /* Box_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Box_GL.h; sourceTree = "<group>"; };
+		EE9DE5BF2936D67E0077C090 /* HalfCone_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HalfCone_GL.h; sourceTree = "<group>"; };
+		EE9DE5C02936D67E0077C090 /* glPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glPlatform.h; sourceTree = "<group>"; };
+		EE9DE5C12936D67E0077C090 /* Polyhedron_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Polyhedron_GL.h; sourceTree = "<group>"; };
+		EE9DE5C22936D67E0077C090 /* Cone_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cone_GL.h; sourceTree = "<group>"; };
+		EE9DE5C32936D67E0077C090 /* HalfCylinder_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HalfCylinder_GL.h; sourceTree = "<group>"; };
+		EE9DE5C42936D67E0077C090 /* Torus_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Torus_GL.h; sourceTree = "<group>"; };
+		EE9DE5C52936D67E0077C090 /* Prism_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prism_GL.h; sourceTree = "<group>"; };
+		EE9DE5D32936D7FF0077C090 /* Body.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Body.cpp; sourceTree = "<group>"; };
+		EE9DE5D42936D7FF0077C090 /* Body.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Body.hpp; sourceTree = "<group>"; };
+		EE9DE5D62936DE0B0077C090 /* Limb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Limb.cpp; sourceTree = "<group>"; };
+		EE9DE5D72936DE0B0077C090 /* Limb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Limb.hpp; sourceTree = "<group>"; };
+		EE9DE5D92936E0C30077C090 /* Sphere_GL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere_GL.cpp; sourceTree = "<group>"; };
+		EE9DE5DB2936E0CB0077C090 /* Sphere_GL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Sphere_GL.h; path = "../../../../../../Downloads/Week 08 - 3D Graphic Objects-1/Graphics Objects C++/Sources/New Sphere  v1/Sphere_GL.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,9 +100,8 @@
 		EE9DE5302936C4610077C090 /* MonkeyBall */ = {
 			isa = PBXGroup;
 			children = (
-				EE9DE5312936C4610077C090 /* main.cpp */,
-				EE9DE53D2936C4BC0077C090 /* ApplConstants.h */,
-				EE9DE53E2936C4D60077C090 /* glPlatform.h */,
+				EE9DE5882936D21F0077C090 /* Source */,
+				EE9DE5722936D1E40077C090 /* Headers */,
 			);
 			path = MonkeyBall;
 			sourceTree = "<group>";
@@ -80,6 +113,90 @@
 				EE9DE5392936C4880077C090 /* GLUT.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE9DE5722936D1E40077C090 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				EE9DE5D72936DE0B0077C090 /* Limb.hpp */,
+				EE9DE5D42936D7FF0077C090 /* Body.hpp */,
+				EE9DE5B12936D67D0077C090 /* Common */,
+				EE9DE5B62936D67E0077C090 /* Graphics */,
+				EE9DE5B32936D67D0077C090 /* Misc. */,
+				EE9DE53D2936C4BC0077C090 /* ApplConstants.h */,
+				EE9DE53E2936C4D60077C090 /* glPlatform.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		EE9DE5882936D21F0077C090 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EE9DE5A42936D65F0077C090 /* Graphics */,
+				EE9DE5A22936D65F0077C090 /* Misc. */,
+				EE9DE5312936C4610077C090 /* main.cpp */,
+				EE9DE5D32936D7FF0077C090 /* Body.cpp */,
+				EE9DE5D62936DE0B0077C090 /* Limb.cpp */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		EE9DE5A22936D65F0077C090 /* Misc. */ = {
+			isa = PBXGroup;
+			children = (
+				EE9DE5A32936D65F0077C090 /* errorHandling.cpp */,
+			);
+			path = Misc.;
+			sourceTree = "<group>";
+		};
+		EE9DE5A42936D65F0077C090 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				EE9DE5A52936D65F0077C090 /* glUtils.cpp */,
+				EE9DE5D92936E0C30077C090 /* Sphere_GL.cpp */,
+				EE9DE5A62936D65F0077C090 /* Cylinder_GL.cpp */,
+				EE9DE5AA2936D65F0077C090 /* GraphicObject_GL.cpp */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
+		EE9DE5B12936D67D0077C090 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EE9DE5B22936D67D0077C090 /* common.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		EE9DE5B32936D67D0077C090 /* Misc. */ = {
+			isa = PBXGroup;
+			children = (
+				EE9DE5B42936D67D0077C090 /* readSpecFile.h */,
+				EE9DE5B52936D67D0077C090 /* errorHandling.h */,
+			);
+			path = Misc.;
+			sourceTree = "<group>";
+		};
+		EE9DE5B62936D67E0077C090 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				EE9DE5DB2936E0CB0077C090 /* Sphere_GL.h */,
+				EE9DE5B82936D67E0077C090 /* Cylinder_GL.h */,
+				EE9DE5B92936D67E0077C090 /* GraphicObject_GL.h */,
+				EE9DE5BA2936D67E0077C090 /* glUtils.h */,
+				EE9DE5BB2936D67E0077C090 /* ObjectParser_GL.h */,
+				EE9DE5BC2936D67E0077C090 /* graphicsDef.h */,
+				EE9DE5BD2936D67E0077C090 /* TubularSection_GL.h */,
+				EE9DE5BE2936D67E0077C090 /* Box_GL.h */,
+				EE9DE5BF2936D67E0077C090 /* HalfCone_GL.h */,
+				EE9DE5C02936D67E0077C090 /* glPlatform.h */,
+				EE9DE5C12936D67E0077C090 /* Polyhedron_GL.h */,
+				EE9DE5C22936D67E0077C090 /* Cone_GL.h */,
+				EE9DE5C32936D67E0077C090 /* HalfCylinder_GL.h */,
+				EE9DE5C42936D67E0077C090 /* Torus_GL.h */,
+				EE9DE5C52936D67E0077C090 /* Prism_GL.h */,
+			);
+			path = Graphics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +256,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE9DE5C62936D6B30077C090 /* glUtils.cpp in Sources */,
+				EE9DE5C72936D6B30077C090 /* Cylinder_GL.cpp in Sources */,
+				EE9DE5CB2936D6B30077C090 /* GraphicObject_GL.cpp in Sources */,
+				EE9DE5D52936D7FF0077C090 /* Body.cpp in Sources */,
+				EE9DE5D82936DE0B0077C090 /* Limb.cpp in Sources */,
+				EE9DE5D22936D6B30077C090 /* errorHandling.cpp in Sources */,
 				EE9DE5322936C4610077C090 /* main.cpp in Sources */,
+				EE9DE5DA2936E0C30077C090 /* Sphere_GL.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +315,7 @@
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -243,6 +368,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
