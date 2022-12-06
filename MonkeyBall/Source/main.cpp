@@ -37,7 +37,9 @@ int gWindowWidth = 1200,
     gWindowHeight = 900;
     
 
-
+//main members
+#define USE_DISPLAY_LISTS    1
+GLUquadric *cyl;
 
 
 
@@ -47,10 +49,30 @@ void myDisplay(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    glPushMatrix();
     
+    glTranslatef(0.f, 0.f, 0.f);
+    setMaterial(0.8f, 0.1f, 0., 0.7f, 0.1f, 0.f, 0.7f, 0.2f, 0.f, 0.3f);
+    gluCylinder(cyl, 1.0f, 0.5f, 2.0f, 12, 16);
+    
+    glPopMatrix();
+
     //    We were drawing into the back buffer, now it should be brought
     //    to the forefront.
     glutSwapBuffers();
+}
+
+void createDisplayLists(void)
+{
+//    torusList = glGenLists(1);
+//    glNewList(torusList, GL_COMPILE);
+//        setMaterial(0.2f, 0.9f, 0., 0.1f, 0.7f, 0.f, 0.1f, 0.5f, 0.f, 0.3f);
+//        torus(12, 16, 1.5f, 0.3f);
+//    glEndList();
+//
+//    glShadeModel(GL_FLAT);
+//    glClearColor(0.0, 0.0, 0.0, 0.0);
+
 }
 
 //    This callback function is called when the window is resized
@@ -180,6 +202,15 @@ void myInit(void)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(40.f, 4.f/3.f, 0.5f, 100.f);
+    
+    #if USE_DISPLAY_LISTS
+        createDisplayLists();
+    #endif
+
+    cyl = gluNewQuadric();
+    gluQuadricDrawStyle(cyl, GLU_FILL);
+    
+    
     myDisplay();
 }
 
