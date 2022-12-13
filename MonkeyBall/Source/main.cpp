@@ -25,6 +25,9 @@ void setMaterial(GLfloat ambRed, GLfloat ambGreen, GLfloat ambBlue, GLfloat difR
                  GLfloat difGreen, GLfloat difBlue, GLfloat specRed, GLfloat specGreen,
                  GLfloat specBlue, GLfloat shine);
 void drawReferenceFrame(void);
+void drawPlane(float width, float length);
+void setupCamera(void);
+void cameraToWorld(void);
 void myDisplay(void);
 void myResize(int w, int h);
 void myMouse(int b, int s, int x, int y);
@@ -35,6 +38,19 @@ void myInit(void);
 //  Current dimensions of the window
 int gWindowWidth = 1200,
     gWindowHeight = 900;
+
+const float	FOV = 40;				//	camera's vertical field of view (in degree)
+
+float		gFocalLength = 0.02,	//	the camera's focal length in meter.
+			gNearZ = 0.0,			//	Position of the clipping planes along the camera's
+			gFarZ = 100.0,			//		optical axis (Z axis)
+			//
+			gRoll = 0,			    //	Roll, pitch, yaw, and translation (Tx, Ty, Tz)
+			gPitch =-90,		    //	  of the Camera--> World transformation
+			gYaw = 0,
+			gTx = 0,
+			gTy = -5,
+			gTz = -10;
     
 
 //main members
@@ -43,6 +59,29 @@ GLUquadric *cyl;
 
 
 
+void setupCamera(void) {
+    glMatrixMode( GL_PROJECTION );
+	glLoadIdentity();
+
+	float fovXY = 1.f*gWindowWidth/gWindowHeight;
+
+	gluPerspective(FOV, fovXY, gNearZ, gFarZ);
+	glMatrixMode( GL_MODELVIEW );
+	glLoadIdentity();
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glShadeModel(GL_SMOOTH);
+}
+
+void cameraToWorld(void)
+{
+	glLoadIdentity();
+	glTranslatef(gTx, gTy, gTz);
+	glRotatef(gRoll, 0.0, 0.0, 1.0);
+	glRotatef(gYaw, 0.0, 1.0, 0.0);
+	glRotatef(gPitch, 1.0, 0.0, 0.0);
+}
+
 //    This is the function that does the actual scene drawing
 //
 void myDisplay(void)
@@ -50,13 +89,15 @@ void myDisplay(void)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glPushMatrix();
-    
-    glTranslatef(0.f, 0.f, 0.f);
-    setMaterial(0.8f, 0.1f, 0., 0.7f, 0.1f, 0.f, 0.7f, 0.2f, 0.f, 0.3f);
-    gluCylinder(cyl, 1.0f, 0.5f, 2.0f, 12, 16);
+
+    //	Move from the camera to the world reference frame
+	cameraToWorld();
+
+    //drawReferenceFrame();
+
+    drawPlane(10, 50);
     
     glPopMatrix();
-
     //    We were drawing into the back buffer, now it should be brought
     //    to the forefront.
     glutSwapBuffers();
@@ -143,7 +184,23 @@ void myKeyboard(unsigned char c, int x, int y)
         case 27:
             exit(0);
             break;
-            
+        case 'w':
+            gPitch += -1;
+            cout << "Pitch = " << gPitch << endl;
+            break;
+        case 'a':
+            gRoll += 1;
+            cout << "Roll = " << gRoll << endl;
+            break;
+        case 's':
+            gPitch += 1;
+            cout << "Pitch = " << gPitch << endl;
+            break;
+        case 'd':
+            gRoll += -1;
+            cout << "Roll = " << gRoll << endl;
+            break;
+
         default:
             break;
     }
@@ -155,9 +212,9 @@ void myKeyboard(unsigned char c, int x, int y)
 //
 void myTimeOut(int dt)
 {
-    
     //    Set up next timer event
     glutTimerFunc(20, myTimeOut, 0);
+    glutPostRedisplay();
 }
 
 //     Allows to define the reflectance properties of the current object's material
@@ -195,13 +252,19 @@ void drawReferenceFrame(void)
     glEnd();
 }
 
+void drawPlane(float width, float length) {
+    float HW = width/2;
+    glBegin(GL_QUAD_STRIP);         //   1-----------------3
+    glVertex3f(-HW, 0, 0);          //   |                 |
+    glVertex3f(HW, 0, 0);           //   |                 |
+    glVertex3f(-HW, length, 0);     //   |                 |
+    glVertex3f(HW, length, 0);      //   2-----------------4
+    glEnd();    
+}
 
 void myInit(void)
 {
-    glutSetKeyRepeat(GLUT_KEY_REPEAT_ON);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(40.f, 4.f/3.f, 0.5f, 100.f);
+    setupCamera();
     
     #if USE_DISPLAY_LISTS
         createDisplayLists();
