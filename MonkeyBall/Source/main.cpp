@@ -50,7 +50,10 @@ float		gFocalLength = 0.02,	//	the camera's focal length in meter.
 			gYaw = 0,
 			gTx = 0,
 			gTy = -5,
-			gTz = -10;
+			gTz = -10,
+            rotationMultiplier = 5,
+            trackWidth = 10, 
+            trackLength = 100;
     
 
 //main members
@@ -95,7 +98,7 @@ void myDisplay(void)
 
     //drawReferenceFrame();
 
-    drawPlane(10, 50);
+    drawPlane(trackWidth, trackLength);
     
     glPopMatrix();
     //    We were drawing into the back buffer, now it should be brought
@@ -185,19 +188,19 @@ void myKeyboard(unsigned char c, int x, int y)
             exit(0);
             break;
         case 'w':
-            gPitch += -1;
+            gPitch += -1*rotationMultiplier;
             cout << "Pitch = " << gPitch << endl;
             break;
         case 'a':
-            gRoll += 1;
+            gRoll += 1*rotationMultiplier;
             cout << "Roll = " << gRoll << endl;
             break;
         case 's':
-            gPitch += 1;
+            gPitch += 1*rotationMultiplier;
             cout << "Pitch = " << gPitch << endl;
             break;
         case 'd':
-            gRoll += -1;
+            gRoll += -1*rotationMultiplier;
             cout << "Roll = " << gRoll << endl;
             break;
 
