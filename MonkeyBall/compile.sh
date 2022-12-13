@@ -1,0 +1,1 @@
+g++ -Wall -I ./Headers/ ./Source/*.cpp -lm -lGL -lGLU -lglut  -o monkeyball
