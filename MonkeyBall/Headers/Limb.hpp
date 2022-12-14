@@ -9,6 +9,10 @@
 #define Limb_hpp
 
 #include <stdio.h>
+#include <vector>
+#include <math.h>
+
+#include "glPlatform.h"
 
 class Limb {
         //
@@ -16,16 +20,19 @@ class Limb {
         //
     public:
 
-    Limb(float x, float y, float z, float theta);
+    Limb(std::vector<float> angles,float x, float y, float z, float limbLength, GLUquadric *cyl);
 
     ~Limb(void);
 
     //
     // public methods
     //
-
-    void update(float t);
     
+
+    void update(int vertexIndex, float theta);
+    
+    
+    void draw(void);
     
 
     /**    Disabled default constructor
@@ -56,10 +63,14 @@ class Limb {
     private:
 
     //        private members
-    float x_;
-    float y_;
-    float z_;
-    float theta_;
+        std::vector<float> angles_;
+        float x_;
+        float y_;
+        float z_;
+        float limbLength_;
+        GLUquadric *cyl_;
+        
+        
 
     //        private methods
     

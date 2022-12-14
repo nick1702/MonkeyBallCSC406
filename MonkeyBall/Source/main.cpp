@@ -97,6 +97,7 @@ void myDisplay(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
+    drawReferenceFrame();
     glPushMatrix();
     //	Move from the camera to the world reference frame
 	cameraToBall();
