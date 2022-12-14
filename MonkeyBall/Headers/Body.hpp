@@ -9,6 +9,8 @@
 #define Body_hpp
 
 #include <stdio.h>
+#include "glPlatform.h"
+#include "Limb.hpp"
 
 
 class Body {
@@ -26,6 +28,8 @@ class Body {
     //
 
     void update(float t);
+    
+    void draw(void);
     
     
 
@@ -61,8 +65,20 @@ class Body {
     float y_;
     float z_;
     float theta_;
+    
+    static GLUquadric* cyl_;
+    static float cylRadius_;
+    static float torsoHeight_;
+    
+//    body parts
+    Limb *rightArm_ = NULL;
+    Limb *leftArm_ = NULL;
+    Limb *rightLeg_ = NULL;
+    Limb *leftLeg_ = NULL;
 
     //        private methods
+    
+    void init(void);
     
 };
 
