@@ -27,7 +27,8 @@ void setMaterial(GLfloat ambRed, GLfloat ambGreen, GLfloat ambBlue, GLfloat difR
 void drawReferenceFrame(void);
 void drawPlane(float width, float length);
 void setupCamera(void);
-void cameraToWorld(void);
+void cameraToBall(void);
+void ballToWorld(void);
 void myDisplay(void);
 void myResize(int w, int h);
 void myMouse(int b, int s, int x, int y);
@@ -46,14 +47,18 @@ float		gFocalLength = 0.02,	//	the camera's focal length in meter.
 			gFarZ = 100.0,			//		optical axis (Z axis)
 			//
 			gRoll = 0,			    //	Roll, pitch, yaw, and translation (Tx, Ty, Tz)
-			gPitch =-90,		    //	  of the Camera--> World transformation
+			gPitch =0,		    //	  of the Camera--> World transformation
 			gYaw = 0,
-			gTx = 0,
-			gTy = -5,
-			gTz = -10,
+			gToBallX = 0,
+			gToBallY = -2,
+			gToBallZ = -10,
+            ballRadius = 1,
+            trackX = 0,
+            trackY = 0,
+            trackZ = 0,
             rotationMultiplier = 5,
-            trackWidth = 10, 
-            trackLength = 100;
+            trackWidth = 5, 
+            trackLength = 10;
     
 
 //main members
@@ -76,10 +81,19 @@ void setupCamera(void) {
 	glShadeModel(GL_SMOOTH);
 }
 
-void cameraToWorld(void)
+void cameraToBall(void)
 {
 	glLoadIdentity();
-	glTranslatef(gTx, gTy, gTz);
+	glTranslatef(gToBallX, gToBallY, gToBallZ);
+    // rotate z towards y to make z point up in world reference frame
+    glRotatef(-90, 1.0, 0.0, 0.0);
+}
+
+
+void ballToWorld(void)
+{
+	glLoadIdentity();
+	glTranslatef(0, 0, -ballRadius);
 	glRotatef(gRoll, 0.0, 0.0, 1.0);
 	glRotatef(gYaw, 0.0, 1.0, 0.0);
 	glRotatef(gPitch, 1.0, 0.0, 0.0);
@@ -92,17 +106,21 @@ void myDisplay(void)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glPushMatrix();
-
     //	Move from the camera to the world reference frame
-	cameraToWorld();
-
-    //drawReferenceFrame();
+	cameraToBall();
+    glColor3f(1.0, 0.0, 0.0);
+    setMaterial(1.0, 0., 0., 0., 0., 0., 0., 0., 0., 0.);
+    glutSolidSphere(ballRadius, 24, 12);
+    drawReferenceFrame();
+    glPushMatrix();
+    ballToWorld();
 
     drawPlane(trackWidth, trackLength);
-    
-    glPopMatrix();
+    drawReferenceFrame();
     //    We were drawing into the back buffer, now it should be brought
     //    to the forefront.
+    glPopMatrix();
+
     glutSwapBuffers();
 }
 
@@ -239,19 +257,21 @@ void setMaterial(GLfloat ambRed, GLfloat ambGreen, GLfloat ambBlue, GLfloat difR
 void drawReferenceFrame(void)
 {
     glBegin(GL_LINES);
-        //    Z --> red.
-        glColor3f(1., 0., 0.);
+        //    X --> Red.
         setMaterial(1.0, 0., 0., 0., 0., 0., 0., 0., 0., 0.);
-        glVertex3f(0., 0., -0.1);
-        glVertex3f(0., 0., 0.5);
-        //    X --> Blue
-        setMaterial(0., 1.0, 0., 0., 0., 0., 0., 0., 0., 0.);
         glVertex3f(-0.1, 0., 0.);
         glVertex3f(0.5, 0., 0.);
-        //    Y --> green
-        setMaterial(0., 0., 1.0, 0., 0., 0., 0., 0., 0., 0.);
+        
+        //    Y --> Green
+        setMaterial(0., 1.0, 0., 0., 0., 0., 0., 0., 0., 0.);
         glVertex3f(0., -0.1, 0.);
         glVertex3f(0., 0.5, 0.);
+
+         //    Z --> Blue
+        setMaterial(0., 0., 1.0, 0., 0., 0., 0., 0., 0., 0.);
+        glVertex3f(0., 0., -0.1);
+        glVertex3f(0., 0., 0.5);
+
     glEnd();
 }
 
@@ -267,17 +287,29 @@ void drawPlane(float width, float length) {
 
 void myInit(void)
 {
-    setupCamera();
-    
-    #if USE_DISPLAY_LISTS
-        createDisplayLists();
-    #endif
+    GLfloat		ambient[] = {0.5, 0.5, 0.5, 1.0};
+	GLfloat		diffuse[] = {1.0, 1.0, 1.0, 1.0};
+	GLfloat		position[] = {0.0, 3.0, 3.0, 0.0};
 
-    cyl = gluNewQuadric();
-    gluQuadricDrawStyle(cyl, GLU_FILL);
-    
-    
-    myDisplay();
+	GLfloat		lmodel_ambient[] = {0.2, 0.2, 0.2, 1.0};
+	GLfloat		local_view[] = {0.0};
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+	glLightfv(GL_LIGHT0, GL_POSITION, position);
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmodel_ambient);
+	glLightModelfv(GL_LIGHT_MODEL_LOCAL_VIEWER, local_view);
+
+	glFrontFace(GL_CW);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_AUTO_NORMAL);
+	glEnable(GL_NORMALIZE);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+
+    setupCamera();
+
 }
 
 
