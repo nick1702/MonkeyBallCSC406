@@ -85,8 +85,8 @@ void cameraToBall(void)
 
 void ballToWorld(void)
 {
-	glRotatef(gRoll, 0.0, 0.0, 1.0);
-	glRotatef(gYaw, 0.0, 1.0, 0.0);
+	glRotatef(gYaw, 0.0, 0.0, 1.0);
+	glRotatef(gRoll, 0.0, 1.0, 0.0);
 	glRotatef(gPitch, 1.0, 0.0, 0.0);
     glTranslatef(trackX, trackY, -ballRadius + trackZ);
 }
@@ -106,6 +106,7 @@ void myDisplay(void)
     //drawReferenceFrame();
     glPushMatrix();
     ballToWorld();
+    setMaterial(0, 1.0, 1.0, 0., 0., 0., 0., 0., 0., 0.);
     drawPlane(trackWidth, trackLength);
     //drawReferenceFrame();
     //    We were drawing into the back buffer, now it should be brought
@@ -202,7 +203,7 @@ void myKeyboard(unsigned char c, int x, int y)
             cout << "Pitch = " << gPitch << endl;
             break;
         case 'a':
-            gRoll += 1*rotationMultiplier;
+            gRoll += -1*rotationMultiplier;
             cout << "Roll = " << gRoll << endl;
             break;
         case 's':
@@ -210,7 +211,7 @@ void myKeyboard(unsigned char c, int x, int y)
             cout << "Pitch = " << gPitch << endl;
             break;
         case 'd':
-            gRoll += -1*rotationMultiplier;
+            gRoll += 1*rotationMultiplier;
             cout << "Roll = " << gRoll << endl;
             break;
 
