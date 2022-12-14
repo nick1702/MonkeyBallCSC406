@@ -77,7 +77,6 @@ void setupCamera(void) {
 
 void cameraToBall(void)
 {
-	glLoadIdentity();
 	glTranslatef(gToBallX, gToBallY, gToBallZ);
     // rotate z towards y to make z point up in world reference frame
     glRotatef(-90, 1.0, 0.0, 0.0);
@@ -86,11 +85,10 @@ void cameraToBall(void)
 
 void ballToWorld(void)
 {
-	glLoadIdentity();
-	glTranslatef(0, 0, -ballRadius);
 	glRotatef(gRoll, 0.0, 0.0, 1.0);
 	glRotatef(gYaw, 0.0, 1.0, 0.0);
 	glRotatef(gPitch, 1.0, 0.0, 0.0);
+    glTranslatef(trackX, trackY, -ballRadius + trackZ);
 }
 
 //    This is the function that does the actual scene drawing
@@ -98,21 +96,21 @@ void ballToWorld(void)
 void myDisplay(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+    glLoadIdentity();
     drawReferenceFrame();
-
     glPushMatrix();
     //	Move from the camera to the world reference frame
 	cameraToBall();
     setMaterial(1.0, 0., 0., 0., 0., 0., 0., 0., 0., 0.);
-    glutSolidSphere(ballRadius, 24, 12);
-    drawReferenceFrame();
+    glutWireSphere(ballRadius, 24, 12);
+    //drawReferenceFrame();
     glPushMatrix();
     ballToWorld();
     drawPlane(trackWidth, trackLength);
-    drawReferenceFrame();
+    //drawReferenceFrame();
     //    We were drawing into the back buffer, now it should be brought
     //    to the forefront.
+    glPopMatrix();
     glPopMatrix();
 
     glutSwapBuffers();
