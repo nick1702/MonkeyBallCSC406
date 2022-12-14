@@ -13,6 +13,7 @@
 #include <iostream>
 //
 #include "glPlatform.h"
+#include "Body.hpp"
 //
 
 using namespace std;
@@ -33,6 +34,9 @@ void myMouse(int b, int s, int x, int y);
 void myKeyboard(unsigned char c, int x, int y);
 void myTimeOut(int dt);
 void myInit(void);
+
+//monkey
+Body *monkey;
 
 //  Current dimensions of the window
 int gWindowWidth = 1200,
@@ -113,6 +117,11 @@ void myDisplay(void)
     drawReferenceFrame();
     //    We were drawing into the back buffer, now it should be brought
     //    to the forefront.
+    
+    
+//    draw monkey
+    monkey->draw();
+    
     glPopMatrix();
 
     glutSwapBuffers();
@@ -303,6 +312,9 @@ void myInit(void)
 	glDepthFunc(GL_LESS);
 
     setupCamera();
+    
+//    monkey initialize
+    monkey = new Body(0.f, 0.f, 1.f);
 
 }
 

@@ -19,7 +19,7 @@ class Body {
         //
     public:
 
-    Body(float x, float y, float z, float theta);
+    Body(float x, float y, float z);
 
     ~Body(void);
 
@@ -64,7 +64,6 @@ class Body {
     float x_;
     float y_;
     float z_;
-    float theta_;
     
     static GLUquadric* cyl_;
     static float cylRadius_;
@@ -79,6 +78,10 @@ class Body {
     //        private methods
     
     void init(void);
+    
+    void setMaterial(GLfloat ambRed, GLfloat ambGreen, GLfloat ambBlue, GLfloat difRed,
+        GLfloat difGreen, GLfloat difBlue, GLfloat specRed, GLfloat specGreen,
+                     GLfloat specBlue, GLfloat shine);
     
 };
 

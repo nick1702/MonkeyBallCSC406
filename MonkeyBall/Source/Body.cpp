@@ -12,12 +12,11 @@ GLUquadric* Body::cyl_ = gluNewQuadric();
 float Body::cylRadius_ = 0.1f;
 float Body::torsoHeight_ = 0.5f;
 
-Body::Body(float x, float y, float z, float theta)
+Body::Body(float x, float y, float z)
 :
 x_(x),
 y_(y),
-z_(z),
-theta_(theta)
+z_(z)
 {
     init();
 }
@@ -40,15 +39,32 @@ void Body::draw(void)
     glTranslatef(x_, y_, z_);
     
 //    draw torso
-
+    setMaterial(1.0, 0., 0., 0., 0., 0., 0., 0., 0., 0.);
     gluCylinder(cyl_, cylRadius_, cylRadius_, torsoHeight_, 12, 8);
     
+    setMaterial(0.0, 1.0, 0., 0., 0., 0., 0., 0., 0., 0.);
     rightArm_->draw();
     
     
     glPopMatrix();
     
     
+}
+
+
+void Body::setMaterial(GLfloat ambRed, GLfloat ambGreen, GLfloat ambBlue, GLfloat difRed,
+    GLfloat difGreen, GLfloat difBlue, GLfloat specRed, GLfloat specGreen,
+    GLfloat specBlue, GLfloat shine)
+{
+    GLfloat ambient[4] = {ambRed, ambGreen, ambBlue, 1.f};
+    GLfloat diffuse[4] = {difRed, difGreen, difBlue, 1.f};
+    GLfloat specular[4] = {specRed, specGreen, specBlue, 1.f};
+    GLfloat emission[4] = {0.f, 0.f, 0.f, 1.f};
+    glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+    glMaterialfv(GL_FRONT, GL_EMISSION, emission);
+    glMaterialf(GL_FRONT, GL_SHININESS, shine * 128.f);
 }
 
 
