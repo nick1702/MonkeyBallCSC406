@@ -13,10 +13,8 @@
 #include <iostream>
 //
 #include "glPlatform.h"
-#include "ApplConstants.h"
 //
 
-using namespace shapes2d;
 using namespace std;
 
 //    Prototypes for my local functions.
@@ -43,7 +41,7 @@ int gWindowWidth = 1200,
 const float	FOV = 40;				//	camera's vertical field of view (in degree)
 
 float		gFocalLength = 0.02,	//	the camera's focal length in meter.
-			gNearZ = 0.0,			//	Position of the clipping planes along the camera's
+			gNearZ = 1.0,			//	Position of the clipping planes along the camera's
 			gFarZ = 100.0,			//		optical axis (Z axis)
 			//
 			gRoll = 0,			    //	Roll, pitch, yaw, and translation (Tx, Ty, Tz)
@@ -62,10 +60,6 @@ float		gFocalLength = 0.02,	//	the camera's focal length in meter.
     
 
 //main members
-#define USE_DISPLAY_LISTS    1
-GLUquadric *cyl;
-
-
 
 void setupCamera(void) {
     glMatrixMode( GL_PROJECTION );
@@ -108,13 +102,11 @@ void myDisplay(void)
     glPushMatrix();
     //	Move from the camera to the world reference frame
 	cameraToBall();
-    glColor3f(1.0, 0.0, 0.0);
     setMaterial(1.0, 0., 0., 0., 0., 0., 0., 0., 0., 0.);
     glutSolidSphere(ballRadius, 24, 12);
     drawReferenceFrame();
     glPushMatrix();
     ballToWorld();
-
     drawPlane(trackWidth, trackLength);
     drawReferenceFrame();
     //    We were drawing into the back buffer, now it should be brought
